@@ -11,7 +11,7 @@ class SyntaxView extends StatefulWidget {
     this.syntaxTheme,
     this.minWidth = 100,
     this.minHeight = 100,
-    this.withZoom = true,
+    this.withZoom = false,
     this.withLinesCount = true,
     this.adjutableHeight = false,
     this.fontSize = 12.0,
@@ -58,18 +58,15 @@ class SyntaxViewState extends State<SyntaxView> {
   double _fontScaleFactor = 1.0;
 
   double getCustomHeight(int numLines, BuildContext context, String text) {
-    double height = 1.0;
-
     final double textScale = MediaQuery.of(context).textScaleFactor;
 
     final TextPainter textPainter = TextPainter(
         textScaleFactor: textScale,
         text: TextSpan(text: text),
-        textDirection: TextDirection.ltr);
+        textDirection: TextDirection.ltr)
+      ..layout(minWidth: widget.minWidth as double, maxWidth: double.infinity);
 
-    height = textPainter.size.height * numLines;
-
-    return height;
+    return textPainter.size.height;
   }
 
   @override

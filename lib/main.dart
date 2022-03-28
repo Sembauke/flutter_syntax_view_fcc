@@ -53,8 +53,8 @@ class Coffee {
       syntax: Syntax.DART,
       syntaxTheme: SyntaxTheme.standard(),
       fontSize: 12.0,
-      withZoom: true,
       withLinesCount: true,
+      adjutableHeight: true,
     ),
     "Dracula": SyntaxView(
       code: code,
